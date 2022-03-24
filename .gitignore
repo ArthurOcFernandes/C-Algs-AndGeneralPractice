@@ -1,0 +1,3 @@
+.vscode
+./Sorting/*.o
+./Sorting/Makefile
