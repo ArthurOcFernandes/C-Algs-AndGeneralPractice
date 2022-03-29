@@ -1,42 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct vector
-{
-    int *arr, size, elements;
-} vector;
-
-void printVector(vector *v);
-void initializeVector(vector *v);
-void push(vector *v, int value);
+#include "vector.h"
 
 int main()
 {
     vector v;
     initializeVector(&v);
 
-    for (int i = 0; i < v.size; i++)
+    for (int i = 0; i < 82; i++)
     {
-        push(&v, i);
+        add(&v, i);
     }
-    push(&v, 20);
-    push(&v, 22);
-    push(&v, 50);
-    push(&v, 2);
+
     printf("%d\n", v.elements);
     printVector(&v);
     return 0;
 }
 
-void copy(int vet[], int vet2[], int size1){
-
-    for(int i = 0; i < size1; i++){
-        vet2[i] = vet[i];
-    }
-
+int size(vector v)
+{
+    return v.size;
 }
 
-void push(vector *v, int value)
+int get(vector *v, int index)
+{
+    return v->arr[index];
+}
+
+void add(vector *v, int value)
 {
 
     if (v->elements <= v->size)
@@ -44,10 +35,11 @@ void push(vector *v, int value)
         v->arr[v->elements++] = value;
     }
     else
-    {   
+    {
+        printf("realocando...\n\n");
         v->arr = realloc(v->arr, 2 * v->size * sizeof(int));
         v->size *= 2;
-        push(v, value);
+        add(v, value);
     }
 }
 
