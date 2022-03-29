@@ -1,3 +1,4 @@
 .vscode
 /Sorting/*.o
 /Sorting/Makefile
+/Data_Structures/*.out
