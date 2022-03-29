@@ -1,3 +1,5 @@
+#pragma once
+
 typedef struct vector
 {
     int *arr, size, elements;
