@@ -10,3 +10,7 @@ void initializeVector(vector *v);
 void add(vector *v, int value);
 int get(vector *v, int index);
 int size(vector v);
+int indexOf(vector *v, int n);
+int isEmpty(vector *v);
+void clear(vector *v);
+void forEach(vector *v, (*void)(function)(int a));

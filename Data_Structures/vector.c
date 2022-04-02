@@ -58,3 +58,19 @@ void printVector(vector *v)
     }
     printf("\n");
 }
+
+int indexOf(vector *v, int n){
+
+    for(int i = 0; i < v->elements; i++)
+        if(v->arr[i] == n) return i;
+
+    return -1;
+}
+
+int isEmpty(vector *v){
+    return v->size == 0;
+}
+
+void clear(vector *v){
+    initializeVector(v);
+}
