@@ -17,7 +17,7 @@ int main()
     forEach(list, &printNode);
     add(list, 4, 350);
     printf("\n");
-    forEach(list, &printNode);
+    printList(list);
 
     return 0;
 }
@@ -45,7 +45,13 @@ node *createNode(LinkedList *list, node *previous, node *next, int value)
         previous->next = self;
     }
     else
+    {
+        if(next != list->first){
+            printf("Error! Invalid operation\n\n");
+            exit(1);
+        }
         list->first = self;
+    }
     if (next != NULL)
     {
         next->previous = self;
