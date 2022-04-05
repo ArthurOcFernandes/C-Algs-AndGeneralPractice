@@ -13,4 +13,4 @@ int size(vector v);
 int indexOf(vector *v, int n);
 int isEmpty(vector *v);
 void clear(vector *v);
-void forEach(vector *v, (*void)(function)(int a));
+void forEach(vector *v, void(*funcion)(int a));
