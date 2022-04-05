@@ -3,21 +3,36 @@
 #include <stdlib.h>
 
 int main()
-{   
-    node *first = createNode(NULL, NULL, 5);
-    node *second = createNode(first, NULL, 10);
-    node *third = createNode(second, NULL, 17);
-    node *realSecond = createNode(first, second, 500);
+{
+    LinkedList *list = createList();
 
-    node *element = createNode(realSecond, second, 900);
-    node *realFirst = createNode(NULL, first, 10345);
-    printf("%d\n", second->next->value);
+    node *first = createNode(list, NULL, NULL, 5);
+    node *second = createNode(list, first, NULL, 10);
+    node *third = createNode(list, second, NULL, 17);
+    node *realSecond = createNode(list, first, second, 500);
 
+    node *element = createNode(list, realSecond, second, 900);
+    node *realFirst = createNode(list, NULL, first, 2);
+
+    forEach(list, &printNode);
+    add(list, 4, 350);
+    printf("\n");
+    forEach(list, &printNode);
 
     return 0;
 }
 
-node *createNode(node *previous, node *next, int value)
+LinkedList *createList()
+{
+
+    LinkedList *list;
+
+    list = (LinkedList *)malloc(sizeof(LinkedList));
+
+    return list;
+}
+
+node *createNode(LinkedList *list, node *previous, node *next, int value)
 {
     node *self;
 
@@ -29,17 +44,39 @@ node *createNode(node *previous, node *next, int value)
     {
         previous->next = self;
     }
-    else if (next != NULL)
+    else
+        list->first = self;
+    if (next != NULL)
     {
         next->previous = self;
     }
+    else
+        list->last = self;
 
     return self;
 }
 
-void forEach(node *first, void (*func)(node *a))
+void add(LinkedList *list, int index, int value)
 {
-    node *current = first;
+    node *curr = list->first;
+    int currPos = 0;
+    while (curr)
+    {
+        if (currPos++ == index)
+        {
+            createNode(list, curr->previous, curr, value);
+            return;
+        }
+        curr = curr->next;
+    }
+
+    printf("\nError! Theres no such index\n");
+    exit(1);
+}
+
+void forEach(LinkedList *list, void (*func)(node *a))
+{
+    node *current = list->first;
 
     while (current)
     {
@@ -53,10 +90,10 @@ void printNode(node *n)
     printf("%d ", n->value);
 }
 
-void printList(node *first)
+void printList(LinkedList *list)
 {
 
-    node *current = first;
+    node *current = list->first;
 
     while (current)
     {

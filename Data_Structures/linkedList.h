@@ -2,14 +2,19 @@
 
 typedef struct node
 {
-
     int value;
     struct node *next;
     struct node *previous;
-
 } node;
 
-node *createNode(node *previous, node *next, int value);
-void printList(node *first);
+typedef struct LinkedList
+{
+    node *first, *last;
+} LinkedList;
+
+LinkedList *createList();
+node *createNode(LinkedList *list, node *previous, node *next, int value);
+void add(LinkedList *list, int index, int value);
+void printList(LinkedList *list);
 void printNode(node *n);
-void forEach(node *first, void (*func)(node *a));
+void forEach(LinkedList *list, void (*func)(node *a));
