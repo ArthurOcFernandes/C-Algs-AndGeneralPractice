@@ -17,7 +17,10 @@ int main()
     forEach(list, &printNode);
     add(list, 4, 350);
     printf("\n");
+    addLast(list, 95);
+    addFirst(list, 354);
     printList(list);
+    printf("\n%d", get(list, 3)->value);
 
     return 0;
 }
@@ -46,7 +49,8 @@ node *createNode(LinkedList *list, node *previous, node *next, int value)
     }
     else
     {
-        if(next != list->first){
+        if (next != list->first)
+        {
             printf("Error! Invalid operation\n\n");
             exit(1);
         }
@@ -80,6 +84,16 @@ void add(LinkedList *list, int index, int value)
     exit(1);
 }
 
+void addLast(LinkedList *list, int value)
+{
+    createNode(list, list->last, NULL, value);
+}
+
+void addFirst(LinkedList *list, int value)
+{
+    createNode(list, NULL, list->first, value);
+}
+
 void forEach(LinkedList *list, void (*func)(node *a))
 {
     node *current = list->first;
@@ -94,6 +108,22 @@ void forEach(LinkedList *list, void (*func)(node *a))
 void printNode(node *n)
 {
     printf("%d ", n->value);
+}
+
+node *get(LinkedList *list, int index)
+{
+    node *current = list->first;
+    int i = 0;
+    while (current)
+    {
+        if (i == index){
+            return current;
+        }
+
+        current = current->next;
+        i++;
+    }
+    return NULL;
 }
 
 void printList(LinkedList *list)

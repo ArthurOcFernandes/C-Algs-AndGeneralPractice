@@ -14,6 +14,9 @@ typedef struct LinkedList
 
 LinkedList *createList();
 node *createNode(LinkedList *list, node *previous, node *next, int value);
+node *get(LinkedList *list, int index);
+void addLast(LinkedList *list,int value);
+void addFirst(LinkedList *list,int value);
 void add(LinkedList *list, int index, int value);
 void printList(LinkedList *list);
 void printNode(node *n);
