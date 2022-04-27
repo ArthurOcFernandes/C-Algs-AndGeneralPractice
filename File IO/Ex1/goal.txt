@@ -1,0 +1,2 @@
+Here the goal is to read an char array from a file and switch all 'a' ocurrences to 'A',
+then write it in another file. 

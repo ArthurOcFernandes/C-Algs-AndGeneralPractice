@@ -1,0 +1,2 @@
+Here the goAl is to reAd An chAr ArrAy from A file And switch All 'A' ocurrences to 'A',
+then write it in Another file. 
